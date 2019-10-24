@@ -1,17 +1,36 @@
 {
-  "name": "wallet-connect-test",
+  "name": "wallet-connect-examples",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@walletconnect/browser": "^1.0.0-beta.37",
+    "@walletconnect/qrcode-modal": "^1.0.0-beta.37",
+    "@walletconnect/web3-provider": "^1.0.0-beta.37",
+    "@walletconnect/web3-subprovider": "^1.0.0-beta.37",
+    "ethers": "^4.0.38",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
-    "react-scripts": "3.2.0"
+    "react-router": "^5.1.2",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.2.0",
+    "walletconnect-web3-provider": "^0.7.28",
+    "web3": "^1.2.2",
+    "web3-react": "^5.0.4"
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^6.2.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "husky": "^3.0.5",
+    "prettier": "^1.18.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint './src/**/*.js'",
+    "prettier": "prettier --write './src/**/*.js'",
+    "prettier-check": "prettier --check './src/**/*.js'"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -27,5 +46,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn run prettier-check",
+      "pre-push": "yarn run lint"
+    }
   }
 }
