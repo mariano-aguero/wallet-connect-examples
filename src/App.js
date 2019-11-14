@@ -16,11 +16,11 @@ const WalletConnect = new WalletConnectConnector({
   api: WalletConnectApi,
   bridge: 'https://bridge.walletconnect.org',
   supportedNetworkURLs: {
-    1: 'https://mainnet.infura.io',
-    4: 'https://rinkeby.infura.io',
+    1: 'https://mainnet.infura.io/v3/7e977d73f2f143ce84ea5ff54f1601fd',
+    4: 'https://rinkeby.infura.io/v3/7e977d73f2f143ce84ea5ff54f1601fd',
     50: 'http://localhost:8545',
   },
-  defaultNetwork: 4,
+  defaultNetwork: 1,
 })
 
 const RedirectToHome = () => <Redirect to="/" />

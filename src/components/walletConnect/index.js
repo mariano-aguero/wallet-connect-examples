@@ -152,6 +152,44 @@ class WalletConnectComponent extends Component {
       })
   }
 
+  realitioContractTransaction = async () => {
+    const { walletConnector, address } = this.state
+
+    const abi = [
+      'function askQuestion(uint256 template_id, string question, address arbitrator, uint32 timeout, uint32 opening_ts, uint256 nonce) public payable returns (bytes32)',
+    ]
+    const arbitratorAddress = '0xdc0a2185031ecf89f091a39c63c2857a7d5c301a'
+    const realitioAddress = '0x325a2e0f3cca2ddbaebb4dfc38df8d19ca165b47'
+
+    const openingTimestamp = Math.floor(Date.now() / 1000)
+    const number = Math.floor(Math.random() * 600) + 1
+    const args = [
+      0,
+      `Test this question please ${number}`,
+      arbitratorAddress,
+      '86400',
+      openingTimestamp,
+      0,
+    ]
+
+    const iface = new ethers.utils.Interface(abi)
+    const dataRealitio = iface.functions.askQuestion.encode(args)
+    const tx = {
+      from: address,
+      to: realitioAddress,
+      data: dataRealitio,
+    }
+
+    walletConnector
+      .sendTransaction(tx)
+      .then(result => {
+        console.log(`Transaction hash ${result}`)
+      })
+      .catch(error => {
+        console.error(error)
+      })
+  }
+
   render = () => {
     return (
       <>
@@ -159,6 +197,10 @@ class WalletConnectComponent extends Component {
           <button onClick={this.walletConnectInit}> Connect with WalletConnect </button>
           <button onClick={this.singleTransaction}> Send single transaction </button>
           <button onClick={this.contractTransaction}> Send contract transaction </button>
+          <button onClick={this.realitioContractTransaction}>
+            {' '}
+            Send realiltio contract transaction{' '}
+          </button>
         </div>
         <div>
           Connected: {this.state.connected ? 'Yes' : 'No'} - Network ID: {this.state.chainId}

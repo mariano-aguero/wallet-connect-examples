@@ -39,8 +39,10 @@ const WalletConnectWithEthersComponent = () => {
 
     const iface = new ethers.utils.Interface(abi)
     const data = iface.functions.changeGreeting.encode(['test5'])
+    // const contractAddressRinkeby = '0x664f6b4987d9db811867f431911124109ed5a475'
+    const contractAddressMainnet = '0x2640cf35d6735ed7a59e47bbeb21ffac4f746b9a'
     const tx = {
-      to: '0x664f6b4987d9db811867f431911124109ed5a475',
+      to: contractAddressMainnet,
       data: data,
     }
 
@@ -55,7 +57,7 @@ const WalletConnectWithEthersComponent = () => {
     const abi = ['function changeGreeting(string _greeting) public']
 
     const contract = new ethers.Contract(
-      '0x664f6b4987d9db811867f431911124109ed5a475',
+      '0x2640cf35d6735ed7a59e47bbeb21ffac4f746b9a',
       abi,
       library,
     ).connect(signer)
